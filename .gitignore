@@ -24,9 +24,31 @@ profile.cov
 go.work
 go.work.sum
 
+# Built commands
+/symfind_2
+/bin/
+
+# Python bytecode, environments, and packaging output
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# Test and type-checker caches
+.coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
 # env file
 .env
 
 # Editor/IDE
-# .idea/
-# .vscode/
+.DS_Store
+.idea/
+.vscode/
+
+test/
