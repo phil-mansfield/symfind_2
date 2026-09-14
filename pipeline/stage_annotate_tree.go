@@ -749,7 +749,7 @@ func PeriodicDisplacement(L, x1, x2 float64) float64 {
 }
 
 func PeriodicContains(L, offset, span, x float64) bool {
-	return (x > offset && x < offset+span) || x < offset+span-L
+	return (x >= offset && x <= offset+span) || x <= offset+span-L
 }
 
 func Parents(h *Haloes, t *Tracks) (parents, parentsEdges []int) {
