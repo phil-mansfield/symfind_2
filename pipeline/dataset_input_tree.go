@@ -86,8 +86,12 @@ func parseInputTreeConfig(cfg *ConfigData, keyValBlock string, dset *InputTree) 
 	)
 
 	con := config.NewConfig()
+	// TODO: underlying library doesn't handle this correctly
 	con.String("Separator", "Delimiter character between columns. Must be in the format 'X'", &separatorText, "' '")
+	// TODO: not actually handled correctly in the
 	con.String("Comment", "Character used to signify columns. Must be in the format 'X'", &commentText, "'#'")
+	// TODO: supporting scipt outputs wrong variabl name and has an off-by-one
+	// error.
 	con.Int("HeaderLines", "Number of lines in the header before data starts.", &dset.HeaderLines, 0)
 
 	err := con.Parse(keyValBlock)
@@ -174,6 +178,7 @@ func (dset *InputTree) Read(fname string, genArgs, genData any) error {
 	cfg.Separator = dset.Separator
 	cfg.Comment = dset.Comment
 	cfg.SkipLines = int(dset.HeaderLines)
+	cfg.ErrorHandling = text.SkipColumnErrors
 	rd := text.TextFile(fname, cfg)
 
 	ints := rd.ReadInts(iCols)
